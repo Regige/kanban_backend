@@ -1,3 +1,4 @@
+from turtle import title
 from django.db import models
 from django.conf import settings
 from datetime import date
@@ -16,8 +17,19 @@ class TaskItem(models.Model):
     due_date = models.DateField(default=date.today)
     task_id = models.IntegerField(unique=True)
     # category = models.CharField(max_length=50) 
-    # checked = models.BooleanField(default=False)
     
     def __str__(self):
         # return str(self.id) + ' ' + self.title oder
+        return f'({self.id}) {self.title}'
+
+class SubtaskItem(models.Model):
+    task = models.ForeignKey(
+        TaskItem,
+        related_name='subtasks',
+        on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=400)
+    completed = models.BooleanField(default=False)
+    
+    def __str__(self):
         return f'({self.id}) {self.title}'

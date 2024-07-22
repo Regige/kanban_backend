@@ -3,8 +3,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import viewsets
-from .models import TaskItem
-from .serializers import TaskSerializer
+from .models import SubtaskItem, TaskItem
+from .serializers import SubtaskItemSerializer, TaskSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
@@ -61,3 +61,7 @@ class TaskViewSet(viewsets.ModelViewSet):
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
+    
+class SubtaskItemViewSet(viewsets.ModelViewSet):
+    queryset = SubtaskItem.objects.all()
+    serializer_class = SubtaskItemSerializer
