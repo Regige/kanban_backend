@@ -63,5 +63,9 @@ class TaskViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
     
 class SubtaskItemViewSet(viewsets.ModelViewSet):
+    
+    authentication_classes = [TokenAuthentication] 
+    permission_classes = [IsAuthenticated]
+    
     queryset = SubtaskItem.objects.all()
     serializer_class = SubtaskItemSerializer
