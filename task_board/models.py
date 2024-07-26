@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class ContactSgl(models.Model):
     title = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    # created_at = models.DateField(default=date.today)
+    created_at = models.DateField(default=date.today)
     phone = models.CharField(max_length=100)
     logogram = models.CharField(max_length=100)
     hex_color = models.CharField(max_length=100)
@@ -35,7 +35,7 @@ class TaskItem(models.Model):
     due_date = models.DateField(default=date.today)
     task_id = models.IntegerField(unique=True)
     assigned_to = models.ManyToManyField(ContactSgl, blank=True, related_name='tasks')
-    # category = models.CharField(max_length=50) 
+    category = models.CharField(max_length=50, default="Others") 
     
     def __str__(self):
         # return str(self.id) + ' ' + self.title oder
