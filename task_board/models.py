@@ -33,7 +33,7 @@ class TaskItem(models.Model):
     task_board = models.CharField(max_length=50)
     created_at = models.DateField(default=date.today)
     due_date = models.DateField(default=date.today)
-    task_id = models.IntegerField(unique=True)
+    # task_id = models.IntegerField(unique=True)
     assigned_to = models.ManyToManyField(ContactSgl, blank=True, related_name='tasks')
     category = models.CharField(max_length=50, default="Others") 
     
