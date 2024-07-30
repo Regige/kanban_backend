@@ -12,7 +12,7 @@ class ContactSglSerializer(serializers.ModelSerializer):
 class SubtaskItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubtaskItem
-        fields = ['id', 'title', 'completed']
+        fields = ['id', 'task', 'title', 'completed']
 
 class TaskSerializer(serializers.ModelSerializer):
     subtasks = SubtaskItemSerializer(many=True, required=False)
