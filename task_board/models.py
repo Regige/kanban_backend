@@ -50,6 +50,10 @@ class SubtaskItem(models.Model):
     )
     title = models.CharField(max_length=400)
     completed = models.BooleanField(default=False)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE, default=1
+    )
     
     def __str__(self):
         return f'({self.id}) {self.title}'

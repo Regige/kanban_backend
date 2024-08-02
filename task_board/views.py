@@ -70,9 +70,10 @@ class TaskViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication] 
     permission_classes = [IsAuthenticated]
     
-    
-    queryset = TaskItem.objects.all()
     serializer_class = TaskSerializer
+    
+    def get_queryset(self):
+        return TaskItem.objects.filter(author=self.request.user)
 
     def create(self, request, *args, **kwargs):
         request.data['author'] = request.user.id
@@ -105,8 +106,10 @@ class SubtaskItemViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication] 
     permission_classes = [IsAuthenticated]
     
-    queryset = SubtaskItem.objects.all()
     serializer_class = SubtaskItemSerializer
+    
+    def get_queryset(self):
+        return SubtaskItem.objects.filter(author=self.request.user)
     
     
     
@@ -115,8 +118,10 @@ class ContactViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication] 
     permission_classes = [IsAuthenticated]
     
-    queryset = ContactSgl.objects.all()
     serializer_class = ContactSglSerializer
+    
+    def get_queryset(self):
+        return ContactSgl.objects.filter(author=self.request.user)
     
     def create(self, request, *args, **kwargs):
         request.data['author'] = request.user.id
